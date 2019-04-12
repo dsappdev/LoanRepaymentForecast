@@ -5,6 +5,7 @@
     Created on : Apr 4, 2019, 10:23:45 AM
     Author     : Doug
 --%>
+<%-- Adding a comment to get pushed to remote --%>
 <sql:query var="loanDetailsQuery" dataSource="jdbc/LoanData">
     SELECT * FROM Loan
     WHERE loan_Number = ? <sql:param value="${param.loan_Number}"/>
