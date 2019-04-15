@@ -7,11 +7,11 @@
 --%>
 <sql:query var="loanDetailsQuery" dataSource="jdbc/LoanData">
     SELECT * FROM Loan
-    WHERE loan_Number = ? <sql:param value="${param.loan_Number}"/>
+    WHERE loan_Number = ? <sql:param value="${param.pymt_Loan_Number}"/>
 </sql:query>
 <sql:query var="pymtDtlsQuery" dataSource="jdbc/LoanData">
     SELECT payment_Date, amount_Paid, interest_Paid, principal_Paid FROM Payment
-    WHERE loan_Number = ? <sql:param value="${param.lnNum}"/>
+    WHERE loan_Number = ? <sql:param value="${param.pymt_Loan_Number}"/>
 </sql:query>   
 <c:set var="loanDetails" value="${loanDetailsQuery.rows[0]}"/>
 <c:set var="pymtDetails" value="${pymtDtlsQuery.rows}"/>
@@ -46,8 +46,8 @@
                     <td><span style="font-size:smaller; font-style:italic;">${loanDetails.interest_Rate}</span></td>
                 </tr>
                 <tr>
-                    <td><strong>First Payment Date: </strong></td>
-                    <td><span style="font-size:smaller; font-style:italic;">${loanDetails.first_Payment_Date}</span></td>
+                    <td><strong>Last Payment Date: </strong></td>
+                    <td><span style="font-size:smaller; font-style:italic;">${loanDetails.last_Payment_Date}</span></td>
                 </tr>
                 <tr>
                     <td><strong>Monthly Payment: </strong></td>
@@ -58,7 +58,7 @@
         </table>
         <table>
             <thead>
-                <tr>Payment Details for Loan #${param.lnNum}</tr>
+                <tr>Payment History for Loan #${param.pymt_Loan_Number}</tr>
                 <tr>                    
                     <th>Date of Payment</th>
                     <th>Payment Amount</th>
@@ -74,11 +74,11 @@
                     <td>${pymtRow.interest_Paid}</td>
                     <td>${pymtRow.principal_Paid}</td>
                 </tr>
-                </c:forEach>           
-            </tbody>
+                </c:forEach>               
+            </tbody>            
         </table>
-                 
-        <div id="backBtn"><a href="index.jsp"><button>Back</button></a></div>
-               
+        <table>
+             <tr><td id="backBtn"><a href="index.jsp"><button>Back</button></a></td></tr>
+        </table>
     </body>
 </html>

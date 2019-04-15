@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <form action="response.jsp">
+                        <form action="newPaymentDetails.jsp">
                             <strong>Select a loan:</strong>
                             <select name="loan_Number">
                                 <option></option>                               
@@ -49,6 +49,20 @@
                         </form>
                     </td>
                 </tr>
+                
+            </tbody>            
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Enter Details for Another Loan</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr>
+                    <td>Click the New Loan button to enter the details for
+                        another loan.</td>
+                </tr>
                 <tr>
                     <td><div id="newLoanBtn"><a href="newLoanDetails.jsp"><button>New Loan</button></a></div></td>                    
                 </tr>
@@ -56,7 +70,7 @@
         </table>
         <table>
             <thead>
-                <tr><td><strong>Overview of All Loans</strong></td></tr>
+                <tr><td><strong>Overview for All Loans</strong></td></tr>
                 <tr>
                     <th>Loan Number</th>
                     <th>Original Principal</th>
@@ -69,16 +83,13 @@
             </thead>
             <tbody>
             <%--<form>--%>
-            <form action="response.jsp">
-                <%-- NEED TO HANDLE NO PAYMENT DATA FOUND --%>
+            <form action="response.jsp" method="GET">
+                <%-- NEED TO HANDLE NO PAYMENT DATA FOUND for a loan
+                    which exists but does not have any payment data --%>
                 <c:forEach var="loanRow" items="${loanData.rows}">
                     <tr>
-                        <%--<td>${loanRow.loan_Number}</td>--%>
-                        <%--<td><a href="response.jsp">${loanRow.loan_Number}</a></td> --%>
-                        <td><input type="submit" name="lnNum" value="${loanRow.loan_Number}"/></td> 
-                        <%--<td>
-                            <c:set var="startPrin" value="${loanRow.starting_Principal}" />
-                            <fmt:parseNumber var ="j" type="currency" value="startPrin" /></td> --%>
+                        <%-- The input's NAME value is also the name of the parameter being passed --%>
+                        <td><input type="submit" name="pymt_Loan_Number" value="${loanRow.loan_Number}"/></td> 
                         <td>${loanRow.starting_Principal}</td>
                         <td>${loanRow.principal_Balance}</td>
                         <td>${loanRow.interest_Rate}</td>
