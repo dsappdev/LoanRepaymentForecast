@@ -40,29 +40,13 @@
                         <td><input type="text" name="intRate"></td>
                     </tr>
                     <tr>
-                        <td>Enter the first payment date (YYYY-MM-DD): </td>
-                        <td><input type="text" name="firstPayDate"></td>
+                        <td>Enter the last payment date (YYYY-MM-DD): </td>
+                        <td><input type="text" name="lastPayDate"></td>
                     </tr>
                     <tr>                        
-                        <td>Enter the monthly payment</td>
+                        <td>Enter the monthly payment: </td>
                         <td><input type="text" name="mnthPymt"></td>
-                    </tr>
-                    <tr>                        
-                        <td>Enter the last payment date</td>
-                        <td><input type="text" name="lastPymtDate"></td>
-                    </tr>
-                    <tr>                        
-                        <td>Enter the last payment amount</td>
-                        <td><input type="text" name="lastPymtAmt"></td>
-                    </tr>
-                    <tr>                        
-                        <td>Enter the amount of interest paid</td>
-                        <td><input type="text" name="intPaid"></td>
-                    </tr>
-                    <tr>                        
-                        <td>Enter the amount of principal paid</td>
-                        <td><input type="text" name="prinPaid"></td>
-                    </tr>
+                    </tr>                   
                     <tr>
                         <td></td>
                         <td><input type="submit" value="submit"></td>                   
@@ -81,21 +65,12 @@
             <sql:param value="${param.startPrin}" />
             <sql:param value="${param.prinBal}" />
             <sql:param value="${param.intRate}" />
-            <sql:param value="${param.firstPayDate}" />
+            <sql:param value="${param.lastPayDate}" />
             <sql:param value="${param.mnthPymt}" />          
         </sql:update>
-        <sql:update var="newPymt" dataSource="jdbc/LoanData">
-            INSERT INTO Payment (loan_Number, amount_Paid, payment_Date, 
-            interest_Paid, principal_Paid)
-            VALUES (?, ?, ?, ?, ?); 
-            <sql:param value="${param.loanNum}" />
-            <sql:param value="${param.lastPymtDate}" />
-            <sql:param value="${param.lastPymtAmt}" />
-            <sql:param value="${param.intPaid}" />
-            <sql:param value="${param.prinPaid}" />
-        </sql:update>
-        <c:if test="${newLoan>=1 && newPymt>=1}">
-            <font size='5' color='green'> The loan details have been entered</font>                
+        <c:if test="${newLoan>=1}">
+            <font size='5' color='green'> The loan details have been entered. 
+                Hit the back button to return to the home page.</font>                
         </c:if>
         </c:catch>
         <c:if test="${exception!=null}">
@@ -103,6 +78,9 @@
         </c:if>
         </c:if> 
         <%-- Cannot go into the form because of the if checking if the data has been submitted  --%>
-        <div id="backBtn"><a href="index.jsp"><button>Back</button></a></div>
+        
+        <table>
+            <tr><td id="backBtn"><a href="index.jsp"><button>Back</button></a></td></tr>
+        </table>
     </body>
 </html>
