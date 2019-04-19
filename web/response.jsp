@@ -59,7 +59,7 @@
         </table>
         <table>
             <thead>
-                <tr>Payment History for Loan #${param.pymt_Loan_Number}</tr>
+                <tr><th>Payment History for Loan #${param.pymt_Loan_Number}</th></tr>
                 <tr>                    
                     <th>Date of Payment</th>
                     <th>Payment Amount</th>

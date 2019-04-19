@@ -100,5 +100,6 @@
             </form>
             </tbody>
         </table>
+                <div><a href="test.html">Go to HTML to test Servlet</a></div>
     </body>
 </html>
